@@ -11,24 +11,24 @@ TURNOS:
 
 {{base_url}}=http://localhost/3-prueba/web2-entrega3/api
 
-obtener token  (BASIC AUTH webadmin admin)
+- obtener token  (BASIC AUTH webadmin admin)
 GET {{base_url}}/usuarios/token
 
 /usuarios/token 
 
-Lista todos los turnos
+- Lista todos los turnos
 GET {{base_url}}/turnos 
 
-Obtiene un turno específico
+- Obtiene un turno específico
 GET {{base_url}}/turnos/55 
 
-Filtrar y ordenar combinado
+- Filtrar y ordenar combinado
 GET {{base_url}}/turnos?id_cliente=44&orderBy=fecha_turno&orderDirection=DESC&page=1&limit=3
 
-Paginar
+- Paginar
 GET {{base_url}}/turnos?page=1&limit=2
 
-Crea un nuevo turno 
+- Crea un nuevo turno 
 POST {{base_url}}/turnos 
 Authorization: (Bearer token: jwt obtenido)
 
@@ -41,7 +41,7 @@ body ejemplo
     "finalizado": 0
 }
 
-Actualiza un turno
+- Actualiza un turno
 PUT {{base_url}}/turnos/70  
 Authorization: (Bearer token: jwt obtenido)
 
@@ -55,6 +55,6 @@ body ejemplo
 }
 
 
-Elimina un turno
+- Elimina un turno
 DELETE {{base_url}}/turnos/70 
 Authorization: (Bearer token: jwt obtenido)
