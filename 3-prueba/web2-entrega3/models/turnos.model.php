@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 
 class TurnosModel {
     private $db;
@@ -78,13 +78,13 @@ class TurnosModel {
     
         // Retornar resultados con metadata de paginación
         return [
-                'data' => $turnos,
-                'pagination' => [
-                    'total' => $total,
-                    'page' => $page,
-                    'limit' => $limit,
-                    'total_pages' => ceil($total / $limit)
-                  ]
+            'data' => $turnos,
+            'pagination' => [
+                'total' => $total,
+                'page' => $page,
+                'limit' => $limit,
+                'total_pages' => ceil($total / $limit)
+            ]
         ];
     }
  
@@ -111,10 +111,6 @@ class TurnosModel {
         $query->execute([$id]);
     }
 
-    public function setFinalize($id, $finalizado) {        
-        $query = $this->db->prepare('UPDATE turnos SET finalizado = ? WHERE id_turno = ?');
-        $query->execute([$finalizado, $id,]);
-    }
 
     function updateTurno($id,$id_cliente, $fecha_turno, $hora_turno, $finalizado) {    
         $query = $this->db->prepare('UPDATE turnos SET id_cliente=?, fecha_turno=?, hora_turno=?, finalizado=? WHERE id_turno = ?');

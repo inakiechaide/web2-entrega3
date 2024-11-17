@@ -4,8 +4,10 @@ ini_set('display_errors', 1);
 
 require_once './libs/router.php';
 require_once './controllers/Controller.turnos.php';
+require_once './controllers/Controller.clientes.php';
 require_once './controllers/user.controller.php';
 require_once './middlewares/jwt.auth.middleware.php';
+
 
 $router = new Router();
 
@@ -22,6 +24,14 @@ $router->addRoute('turnos/:id', 'GET', 'TurnosController', 'get', false);
 $router->addRoute('turnos/:id', 'DELETE', 'TurnosController', 'delete', true);
 $router->addRoute('turnos', 'POST', 'TurnosController', 'create', true);
 $router->addRoute('turnos/:id', 'PUT', 'TurnosController', 'update', true);
-$router->addRoute('turnos/:id/finalizado', 'PUT', 'TurnosController', 'setFinalize', true);
+
+
+// Rutas de Clientes
+$router->addRoute('clientes', 'GET', 'ClientesController', 'getAll', false);
+$router->addRoute('clientes/:id', 'GET', 'ClientesController', 'get', false);
+$router->addRoute('clientes', 'POST', 'ClientesController', 'create', true);
+$router->addRoute('clientes/:id', 'PUT', 'ClientesController', 'update', true);
+$router->addRoute('clientes/:id', 'DELETE', 'ClientesController', 'delete', true);
+
 
 $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);

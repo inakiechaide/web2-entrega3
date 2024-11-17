@@ -92,7 +92,7 @@ class TurnosController
         }
 
         $this->model->deleteTurno($id);
-        $this->view->response("El turno con el id=$id se eliminó con éxito");  
+        $this->view->response("El turno con el id=$id se elimino con exito");  
     }
 
     // api/tareas (POST)
@@ -178,45 +178,4 @@ class TurnosController
     }
 
 
-    /**
-     * Método para actualizar el subrecurso "finalizada" de tareas.
-     * 
-     * api/tareas/:id/finalizada (respeta RESTFul)
-     * 
-     * NOTA: se podria (y es mejor) usar un PATCH a api/tareas/:id
-     * ya que es similar al PUT pero solo modifica lo que envias en
-     * el body, el resto de los campos los deja igual.
-     * (más dificil de implementar) 
-     * 
-     */
-    public function setFinalize($req, $res)
-    {
-        if (!$res->user) {
-            return $this->view->response("No autorizado", 401);
-        }
-        $id = $req->params->id;
-
-        // verifico que exista
-        $turno = $this->model->getTurno($id);
-        if (!$turno) {
-            return $this->view->response("El turno con el id=$id no existe", 404);
-        }
-
-        // valido los datos obligatorios
-        if (!isset($req->body->finalizado)) {
-            return $this->view->response('Faltan completar datos', 400);
-        }
-
-        // valido tipo de datos
-        if ($req->body->finalizado !== 1 && $req->body->finalizado !== 0) {
-            return $this->view->response('Tipo de dato incorrecto', 400);
-        }
-
-        // finalizamos
-        $this->model->setFinalize($id, $req->body->finalizado);
-
-        // obtengo el turno modificado y lo devuelvo en la respuesta
-        $turno = $this->model->getTurno($id);
-        $this->view->response($turno, 200);
-    }
 }

@@ -1,56 +1,29 @@
-TRABAJO PRACTICO N 3
-
-INTEGRANTES:
-
-Echaide Iñaki
-Velez Matias
-
 Endpoints disponibles:
+Clientes:
 
-TURNOS:
-
-obtener token  (BASIC AUTH webadmin admin)
-GET http://localhost/3-prueba/web2-entrega3/api/usuarios/token 
-
-Lista todos los turnos
-GET http://localhost/3-prueba/web2-entrega3/api/turnos 
-
-Obtiene un turno específico
-GET http://localhost/3-prueba/web2-entrega3/api/turnos/55 
-
-Filtrar y ordenar combinado
-GET http://localhost/3-prueba/web2-entrega3/api/turnos?id_cliente=44&orderBy=fecha_turno&orderDirection=DESC&page=1&limit=3
-
-Paginar
-GET http://localhost/3-prueba/web2-entrega3/api/turnos?page=1&limit=2
-
-Crea un nuevo turno 
-POST http://localhost/3-prueba/web2-entrega3/api/turnos 
-Authorization: (Bearer token: jwt obtenido)
-
-body ejemplo
-
-{
-    "id_cliente": 44,
-    "fecha_turno": "2024-03-01",
-    "hora_turno": "10:00:00",
-    "finalizado": 0
-}
-
-Actualiza un turno
-PUT http://localhost/3-prueba/web2-entrega3/api/turnos/70  
-Authorization: (Bearer token: jwt obtenido)
-
-body ejemplo
-
-{
-	 "id_cliente": 44,
-    "fecha_turno": "2024-03-01",
-    "hora_turno": "10:00:00",
-    "finalizado": 0
-}
+GET http://localhost/web2-entrega3/api/clientes/read.php - Lista todos los clientes
+GET http://localhost/web2-entrega3/api/clientes/read_one.php?id=1 - Obtiene un cliente específico
+POST http://localhost/web2-entrega3/api/clientes/create.php - Crea un nuevo cliente
+PUT http://localhost/web2-entrega3/api/clientes/update.php - Actualiza un cliente
 
 
-Elimina un turno
-DELETE http://localhost/3-prueba/web2-entrega3/api/turnos/70 
-Authorization: (Bearer token: jwt obtenido)
+Turnos:
+
+GET http://localhost/web2-entrega3/api/turnos/listar.php - Lista todos los turnos
+GET http://localhost/web2-entrega3/api/turnos/leer_uno.php?id=1 - Obtiene un turno específico
+POST http://localhost/web2-entrega3/api/turnos/crear.php - Crea un nuevo turno
+PUT http://localhost/web2-entrega3/api/turnos/actualizar.php - Actualiza un turno
+DELETE http://localhost/web2-entrega3/api/turnos/eliminar.php?id={id_turno}- Elimina un turno 
+
+GET /api/turnos/listar.php?id_cliente=1&finalizado=0 - Turnos pendientes de cliente especifico
+
+
+# Filtrar y ordenar
+GET /api/turnos/listar.php?fecha_desde=2024-04-01&finalizado=0&orden=fecha_turno,hora_turno&direccion=DESC,ASC
+
+# Paginar
+GET /api/turnos/listar.php?pagina=2&por_pagina=15
+
+# Combinar todo
+GET /api/turnos/listar.php?fecha_desde=2024-04-01&finalizado=0&orden=fecha_turno&direccion=DESC&pagina=2&por_pagina=15
+GET http://localhost/web2-entrega3/api/turnos/listar.php?fecha_desde=2024-04-01&fecha_hasta=2024-04-30&orden=fecha_turno,hora_turno&direccion=DESC,ASC&pagina=1&por_pagina=15 - Listado y ordenamiento de turnos por fecha, hora, dirección(DESC - ASC) y paginación

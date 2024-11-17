@@ -48,5 +48,10 @@
         }
 
         return $payload;
-       
+        if (is_string($resultado)) {
+            echo "Error: " . $resultado;
+        } else {
+            error_log( "JWT válido, payload: ");
+            error_log($resultado);
+        }
     }

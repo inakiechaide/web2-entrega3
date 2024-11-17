@@ -14,7 +14,8 @@
         }
 
         public function getToken() {
-            
+            error_log("Headers recibidos: " . print_r(getallheaders(), true));
+            error_log("Authorization header: " . (isset($_SERVER['HTTP_AUTHORIZATION']) ? $_SERVER['HTTP_AUTHORIZATION'] : 'No presente'));
         
             // obtengo el email y la contraseña desde el header
             $auth_header = $_SERVER['HTTP_AUTHORIZATION']; // "Basic dXN1YXJpbw=="
@@ -25,7 +26,7 @@
             if($auth_header[0] != 'Basic') {
                 return $this->view->response("Error en los datos ingresados", 400);
             }
-            $user_pass = base64_decode($auth_header[1]); // "usuario:password"   
+            $user_pass = base64_decode($auth_header[1]); // "usuario:password"
             $user_pass = explode(':', $user_pass); // ["usuario", "password"]
             // Buscamos El usuario en la base
             $user = $this->model->getUserByEmail($user_pass[0]);
