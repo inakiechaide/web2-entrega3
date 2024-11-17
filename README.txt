@@ -58,3 +58,49 @@ body ejemplo
 - Elimina un turno
 DELETE {{base_url}}/turnos/70 
 Authorization: (Bearer token: jwt obtenido)
+
+
+CLIENTES: 
+
+- Lista todos los clientes
+GET {{base_url}}/clientes 
+
+- Obtiene un clientes específico
+GET {{base_url}}/clientes/55 
+
+- Filtrar y ordenar combinado
+GET {{base_url}}/clientes?nombre=juan&orderBy=id_cliente&orderDirection=DESC&page=1&limit=2
+
+- Paginar
+GET {{base_url}}/clientes?page=1&limit=2
+
+- Crea un nuevo clientes 
+POST {{base_url}}/clientes 
+Authorization: (Bearer token: jwt obtenido)
+
+body ejemplo
+
+{
+    "nombre": juan,
+    "telefono": "2495478982",
+    "email": "juan@juan.com",
+    "foto": NULL
+}
+
+- Actualiza un cliente
+PUT {{base_url}}/clientes/70  
+Authorization: (Bearer token: jwt obtenido)
+
+body ejemplo
+
+{
+	"nombre": "juancito",
+    	"telefono": "2495478982",
+    	"email": "juan@juan.com",
+    	"foto": NULL
+}
+
+
+- Elimina un clientes
+DELETE {{base_url}}/clientes/70 
+Authorization: (Bearer token: jwt obtenido)
